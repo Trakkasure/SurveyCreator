@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import QuestionHolder from "./components/QuestionsHolder.jsx";
+// import QuestionHolder from "./components/QuestionsHolder.jsx";
 
 class App extends React.Component {
   handleSubmit(answers) {
@@ -9,9 +9,10 @@ class App extends React.Component {
   }
 
   render() {
+    console.log("Props:",props);
     return (
       <div>
-        Survey!
+        Take your Survey!
         <QuestionHolder />
         <button type="submit" onClick={this.handleSubmit}>
           Submit
