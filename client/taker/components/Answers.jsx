@@ -1,45 +1,42 @@
 import React from "react";
-
-import { Row, Input } from "react-materialize";
-
-import { DragSource, DropTarget } from "react-dnd";
-
 class Answers extends React.Component {
   constructor(props) {
     super(props);
+  }
+
+  keyGen() {
+    let uuid = Math.random() * 10;
+    return uuid;
   }
 
   handleData(question) {
     switch (question.type) {
       case "fv":
         return (
-          <Input
-            type="range"
-            className="range"
-            min={question.min}
-            max={question.max}
-          />
+          <p key={this.keyGen()} className="range">
+            <input
+              type="range"
+              min={question.min}
+              max={question.max}
+              style={{ width: 25 + "%", margin: 25 + "px" }}
+            />
+          </p>
         );
       case "boolean":
         return (
-          <Row className="boolean">
-            <Input
-              name="boolean"
-              type="radio"
-              name={question.key}
-              value="True"
-              label="True"
-            />
-            <Input
-              name="boolean"
-              type="radio"
-              name={question.key}
-              value="False"
-              label="False"
-            />
-          </Row>
+          <div className="boolean">
+            <label key={this.keyGen()}>
+              <input name={question.key} type="radio" value="true" />
+              <span>True</span>
+            </label>
+            <br />
+            <label key={this.keyGen()}>
+              <input name={question.key} type="radio" value="false" />
+              <span>False</span>
+            </label>
+          </div>
         );
-      case "op":
+      case "op": // TO DO: Need to figure out what and how to do this.
         return (
           <div className="order">
             {question.answers.map(data => {
@@ -49,18 +46,22 @@ class Answers extends React.Component {
         );
       case "mc":
         return (
-          <Row className="multichoice">
+          <div className="multichoice">
             {question.answers.map(data => {
               return (
-                <Input
-                  name={question.question}
-                  type="radio"
-                  value={data}
-                  label={data}
-                />
+                <label key={this.keyGen()}>
+                  <input
+                    key={this.keyGen()}
+                    name={question.question}
+                    type="radio"
+                    value={data}
+                  />
+                  <span>{data}</span>
+                  <br />
+                </label>
               );
             })}
-          </Row>
+          </div>
         );
     }
   }

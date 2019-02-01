@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Button, Input } from "react-materialize";
 import QuestionHolder from "./components/QuestionsHolder.jsx";
 
 class App extends React.Component {
@@ -10,27 +9,38 @@ class App extends React.Component {
     for (let q of answers) {
       console.log("Question is: ", q.children[0]);
       switch (q.children[1].children[0].className) {
-        case "col input-field":
+        case "range":
           console.log("range");
           console.log(q.children[1].children[0].children[0].value);
           break;
         case "order":
           console.log("order");
           break;
-        case "row multichoice":
+        case "multichoice":
           console.log("multichoice");
+          let answered = false;
           for (let a of q.children[1].children[0].children) {
             if (a.children[0].checked) {
               console.log(a.children[0].value);
+              answered = true;
+              break;
             }
           }
+          if (!answered) {
+            console.log("Please answer question: ", q.children[0].innerHTML);
+          }
           break;
-        case "row boolean":
+        case "boolean":
           console.log("boolean");
-          let ans = q.children[1].children[0].children[0].children[0].checked
-            ? true
-            : false;
-          console.log(ans);
+          if (q.children[1].children[0].children[0].children[0].checked) {
+            console.log("true");
+          } else if (
+            q.children[1].children[0].children[2].children[0].checked
+          ) {
+            console.log("false");
+          } else {
+            console.log("please answer question: ", q.children[0].innerHTML);
+          }
           break;
         default:
           console.log("not supported input");
@@ -44,14 +54,16 @@ class App extends React.Component {
       <div>
         <h2>Take your Survey!</h2>
         <QuestionHolder />
-        <Button
-          waves="light"
+        <button
+          className="btn waves-effect waves-light"
+          id="submitButton"
           type="submit"
-          name="submit"
+          name="action"
           onClick={this.handleSubmit}
         >
           Submit
-        </Button>
+          {/* <i className="material-icons right">send</i> */}
+        </button>
       </div>
     );
   }

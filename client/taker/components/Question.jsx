@@ -10,7 +10,7 @@ class Question extends React.Component {
   render() {
     return (
       <div className="questions">
-        <h3>{this.props.data.question}</h3>
+        <h5>{this.props.data.question}</h5>
         <Answers data={this.props.data} />
       </div>
     );
