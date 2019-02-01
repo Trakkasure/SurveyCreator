@@ -1,20 +1,16 @@
 import React from "react";
 
 import Question from "./Question.jsx";
-import questions from "../../../SampleData/questions.json";
+import questions from "../../../SampleData/surveys.js";
 
 class QuestionsHolder extends React.Component {
-  func() {
-    console.log("func called");
-  }
-
   render() {
     return (
-      <div>
-        {questions.questions.map(data => {
+      <form id="survey">
+        {questions.surveys.life.questions.map(data => {
           return <Question data={data} key={data.key} />;
         })}
-      </div>
+      </form>
     );
   }
 }

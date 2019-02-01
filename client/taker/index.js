@@ -1,22 +1,57 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
-// import QuestionHolder from "./components/QuestionsHolder.jsx";
+import { Button, Input } from "react-materialize";
+import QuestionHolder from "./components/QuestionsHolder.jsx";
 
 class App extends React.Component {
-  handleSubmit(answers) {
-    console.log("Submit button clicked!");
+  handleSubmit() {
+    let answers = document.getElementsByClassName("questions");
+    console.log(answers);
+    for (let q of answers) {
+      console.log("Question is: ", q.children[0]);
+      switch (q.children[1].children[0].className) {
+        case "col input-field":
+          console.log("range");
+          console.log(q.children[1].children[0].children[0].value);
+          break;
+        case "order":
+          console.log("order");
+          break;
+        case "row multichoice":
+          console.log("multichoice");
+          for (let a of q.children[1].children[0].children) {
+            if (a.children[0].checked) {
+              console.log(a.children[0].value);
+            }
+          }
+          break;
+        case "row boolean":
+          console.log("boolean");
+          let ans = q.children[1].children[0].children[0].children[0].checked
+            ? true
+            : false;
+          console.log(ans);
+          break;
+        default:
+          console.log("not supported input");
+          break;
+      }
+    }
   }
 
   render() {
-    console.log("Props:",props);
     return (
       <div>
-        Take your Survey!
+        <h2>Take your Survey!</h2>
         <QuestionHolder />
-        <button type="submit" onClick={this.handleSubmit}>
+        <Button
+          waves="light"
+          type="submit"
+          name="submit"
+          onClick={this.handleSubmit}
+        >
           Submit
-        </button>
+        </Button>
       </div>
     );
   }

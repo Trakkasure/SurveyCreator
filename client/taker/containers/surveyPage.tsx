@@ -1,10 +1,9 @@
+// import Question from '../components/Question.jsx';
 
-import Question from '../components/Question.jsx';
+// export default function(props) {
 
-export default function(props) {
+//     return (
+//         <Question >
+//     );
 
-    return (
-        <Question >
-    );
-
-}
+// }

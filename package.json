@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "node server/index.js",
+    "server": "nodemon server/index.js",
     "build:watch": "npm run build:dev -- --watch",
     "build:dev": "webpack --mode development --progress --color",
     "build": "webpack -mode production --progress"
@@ -17,6 +17,8 @@
     "body-parser": "1.18.3",
     "express": "^4.16.4",
     "react": "^16.6.0",
+    "react-dnd": "^7.0.2",
+    "react-dnd-html5-backend": "^7.0.2",
     "react-dom": "^16.6.0",
     "react-materialize": "^2.6.0",
     "redux": "^4.0.1",
