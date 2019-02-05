@@ -1,20 +1,33 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import QuestionHolder from "./components/QuestionsHolder.jsx";
+import axios from "axios";
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: {}
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.sendData = this.sendData.bind(this);
+  }
   handleSubmit() {
-    let answers = document.getElementsByClassName("questions");
-    console.log(answers);
-    for (let q of answers) {
+    let DOManswers = document.getElementsByClassName("questions");
+    let dsa = {}; //DataStructureAnswers
+    console.log(DOManswers);
+    for (let q of DOManswers) {
       console.log("Question is: ", q.children[0]);
+      const locationData = q.children[1].children[0];
+      const locationQuestion = q.children[0].innerHTML;
       switch (q.children[1].children[0].className) {
         case "range":
           console.log("range");
-          console.log(q.children[1].children[0].children[0].value);
+          console.log(locationData.children[0].value);
+          dsa[locationQuestion] = locationData.children[0].value;
           break;
         case "order":
-          console.log("order");
+          console.log("order: PLZ FIX");
           break;
         case "multichoice":
           console.log("multichoice");
@@ -23,6 +36,7 @@ class App extends React.Component {
             if (a.children[0].checked) {
               console.log(a.children[0].value);
               answered = true;
+              dsa[locationQuestion] = a.children[0].value;
               break;
             }
           }
@@ -34,10 +48,12 @@ class App extends React.Component {
           console.log("boolean");
           if (q.children[1].children[0].children[0].children[0].checked) {
             console.log("true");
+            dsa[locationQuestion] = true;
           } else if (
             q.children[1].children[0].children[2].children[0].checked
           ) {
             console.log("false");
+            dsa[locationQuestion] = false;
           } else {
             console.log("please answer question: ", q.children[0].innerHTML);
           }
@@ -47,6 +63,14 @@ class App extends React.Component {
           break;
       }
     }
+    this.setState({ data: dsa }, () => {
+      console.log("State: ", this.state.data);
+      this.sendData();
+    });
+  }
+
+  sendData() {
+    axios.post("/postSurveyData", { data: this.state.data });
   }
 
   render() {

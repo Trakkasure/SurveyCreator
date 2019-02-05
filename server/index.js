@@ -11,6 +11,10 @@ app.use(bodyParser.json());
 //replace ../react-client/dist to respective folder.
 app.use(express.static(path.resolve(__dirname, "../client/dist")));
 
+app.post("/postSurveyData", (req, res) => {
+  console.log(req.body);
+});
+
 app.listen(1128, () => {
   console.log("listening on port 1128!");
 });
