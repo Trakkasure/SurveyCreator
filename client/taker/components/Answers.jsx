@@ -1,73 +1,93 @@
 import React from "react";
-class Answers extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+import { Dispatch } from "redux";
+import { actionChannel } from "@redux-saga/core/effects";
 
-  keyGen() {
-    let uuid = Math.random() * 10;
-    return uuid;
-  }
+const keyGen = () => {
+  let uuid = Math.random() * 10;
+  return uuid;
+};
+const consoleLog = e => {
+  console.log(e.target.name, ": ", e.target.value); //can use name to store question name
+  // this.props.stateChange(e);
+};
 
-  handleData(question) {
-    switch (question.type) {
-      case "fv":
-        return (
-          <p key={this.keyGen()} className="range">
+const dispatcher = () => {};
+
+const handleData = question => {
+  switch (question.type) {
+    case "fv":
+      return (
+        <p
+          key={keyGen()}
+          className="range-field"
+          style={{ width: 25 + "%", margin: 25 + "px" }}
+        >
+          <input
+            type="range"
+            name={question.question}
+            min={question.min}
+            max={question.max}
+            onChange={consoleLog}
+          />
+        </p>
+      );
+    case "boolean":
+      return (
+        <div className="boolean">
+          <label key={keyGen()}>
             <input
-              type="range"
-              min={question.min}
-              max={question.max}
-              style={{ width: 25 + "%", margin: 25 + "px" }}
+              name={question.question}
+              type="radio"
+              value="true"
+              onClick={consoleLog}
             />
-          </p>
-        );
-      case "boolean":
-        return (
-          <div className="boolean">
-            <label key={this.keyGen()}>
-              <input name={question.key} type="radio" value="true" />
-              <span>True</span>
-            </label>
-            <br />
-            <label key={this.keyGen()}>
-              <input name={question.key} type="radio" value="false" />
-              <span>False</span>
-            </label>
-          </div>
-        );
-      case "op": // TO DO: Need to figure out what and how to do this.
-        return (
-          <div className="order">
-            {question.answers.map(data => {
-              return data;
-            })}
-          </div>
-        );
-      case "mc":
-        return (
-          <div className="multichoice">
-            {question.answers.map(data => {
-              return (
-                <label key={this.keyGen()}>
-                  <input
-                    key={this.keyGen()}
-                    name={question.question}
-                    type="radio"
-                    value={data}
-                  />
-                  <span>{data}</span>
-                  <br />
-                </label>
-              );
-            })}
-          </div>
-        );
-    }
+            <span>True</span>
+          </label>
+          <br />
+          <label key={keyGen()}>
+            <input
+              name={question.question}
+              type="radio"
+              value="false"
+              onClick={consoleLog}
+            />
+            <span>False</span>
+          </label>
+        </div>
+      );
+    case "op": // TO DO: Need to figure out what and how to do this.
+      return (
+        <div className="order">
+          {question.answers.map(data => {
+            return data;
+          })}
+        </div>
+      );
+    case "mc":
+      return (
+        <div className="multichoice">
+          {question.answers.map(data => {
+            return (
+              <label key={keyGen()}>
+                <input
+                  key={keyGen()}
+                  name={question.question}
+                  type="radio"
+                  value={data}
+                  onClick={consoleLog}
+                />
+                <span>{data}</span>
+                <br />
+              </label>
+            );
+          })}
+        </div>
+      );
   }
+};
 
-  render() {
-    return <div>{this.handleData(this.props.data)} </div>;
-  }
-}
+const Answers = props => {
+  return <div>{handleData(props.data)} </div>;
+};
+
 export default Answers;

@@ -1,19 +1,13 @@
 import React from "react";
-
 import Answers from "./Answers.jsx";
 
-class Question extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const Question = props => {
+  return (
+    <div className="questions">
+      <h5>{props.data.question}</h5>
+      <Answers data={props.data} />
+    </div>
+  );
+};
 
-  render() {
-    return (
-      <div className="questions">
-        <h5>{this.props.data.question}</h5>
-        <Answers data={this.props.data} />
-      </div>
-    );
-  }
-}
 export default Question;
