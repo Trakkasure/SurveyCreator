@@ -178,7 +178,7 @@ eval("__webpack_require__.r(__webpack_exports__);\nfunction _toConsumableArray(a
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _reducers_changeInput_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./reducers/changeInput.js */ \"./client/taker/store/reducers/changeInput.js\");\n/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ \"./node_modules/redux/es/redux.js\");\n\n\nvar rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_1__[\"combineReducers\"])(_reducers_changeInput_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n/* harmony default export */ __webpack_exports__[\"default\"] = (_reducers_changeInput_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n\n//# sourceURL=webpack:///./client/taker/store/rootReducer.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _reducers_changeInput_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./reducers/changeInput.js */ \"./client/taker/store/reducers/changeInput.js\");\n/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ \"./node_modules/redux/es/redux.js\");\n\n\nvar rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_1__[\"combineReducers\"])(_reducers_changeInput_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n/* harmony default export */ __webpack_exports__[\"default\"] = (rootReducer);\n\n//# sourceURL=webpack:///./client/taker/store/rootReducer.js?");
 
 /***/ }),
 
