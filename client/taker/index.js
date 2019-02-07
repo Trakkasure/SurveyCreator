@@ -5,8 +5,35 @@ import axios from "axios";
 import { createStore } from "redux";
 import RootReducer from "./store/rootReducer.js";
 import { Provider } from "react-redux";
+import * as actions from "./store/actions";
 
-const store = createStore(RootReducer);
+const store = createStore(
+  RootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+const dispatcher = e => {
+  const unsubscribe = store.subscribe(() => {
+    console.log("Logging state!: ", store.getState());
+  });
+
+  switch (e.target.type) {
+    case "range":
+      store.dispatch(actions.editRange(e.target.name, e.target.value));
+      unsubscribe();
+
+      break;
+    case "radio":
+      store.dispatch(actions.editMulti(e.target.question, e.target.value));
+      unsubscribe();
+
+      break;
+    default:
+      unsubscribe();
+      break;
+  }
+  console.log("Dispatcher Called");
+};
 
 const sendData = () => {
   axios.post("/postSurveyData", {});
@@ -16,7 +43,7 @@ const render = () => {
   return (
     <div>
       <h2>Take your Survey!</h2>
-      <QuestionHolder />
+      <QuestionHolder store={store} dispatcher={dispatcher} />
       <button
         className="btn waves-effect waves-light"
         id="submitButton"

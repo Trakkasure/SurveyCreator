@@ -2,6 +2,9 @@ import React from "react";
 import { Dispatch } from "redux";
 import { actionChannel } from "@redux-saga/core/effects";
 
+let store;
+let dispatcher;
+
 const keyGen = () => {
   let uuid = Math.random() * 10;
   return uuid;
@@ -10,8 +13,6 @@ const consoleLog = e => {
   console.log(e.target.name, ": ", e.target.value); //can use name to store question name
   // this.props.stateChange(e);
 };
-
-const dispatcher = () => {};
 
 const handleData = question => {
   switch (question.type) {
@@ -27,7 +28,7 @@ const handleData = question => {
             name={question.question}
             min={question.min}
             max={question.max}
-            onChange={consoleLog}
+            onChange={dispatcher}
           />
         </p>
       );
@@ -39,7 +40,7 @@ const handleData = question => {
               name={question.question}
               type="radio"
               value="true"
-              onClick={consoleLog}
+              onClick={dispatcher}
             />
             <span>True</span>
           </label>
@@ -49,7 +50,7 @@ const handleData = question => {
               name={question.question}
               type="radio"
               value="false"
-              onClick={consoleLog}
+              onClick={dispatcher}
             />
             <span>False</span>
           </label>
@@ -74,7 +75,7 @@ const handleData = question => {
                   name={question.question}
                   type="radio"
                   value={data}
-                  onClick={consoleLog}
+                  onClick={dispatcher}
                 />
                 <span>{data}</span>
                 <br />
@@ -87,7 +88,9 @@ const handleData = question => {
 };
 
 const Answers = props => {
-  return <div>{handleData(props.data)} </div>;
+  store = props.store;
+  dispatcher = props.dispatcher;
+  return <div>{handleData(props.data, store)} </div>;
 };
 
 export default Answers;
