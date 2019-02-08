@@ -3,18 +3,19 @@ import ReactDOM from "react-dom";
 import QuestionHolder from "./components/QuestionsHolder.jsx";
 import axios from "axios";
 import { createStore } from "redux";
-import RootReducer from "./store/rootReducer.js";
+// import RootReducer from "./store/rootReducer.js";
+import Reducer from "./store/reducers/changeInput";
 import { Provider } from "react-redux";
 import * as actions from "./store/actions";
 
 const store = createStore(
-  RootReducer,
+  Reducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 const dispatcher = e => {
   const unsubscribe = store.subscribe(() => {
-    console.log("Logging state!: ", store.getState());
+    // console.log("Logging state!: ", store.getState());
   });
 
   switch (e.target.type) {
@@ -24,7 +25,7 @@ const dispatcher = e => {
 
       break;
     case "radio":
-      store.dispatch(actions.editMulti(e.target.question, e.target.value));
+      store.dispatch(actions.editMulti(e.target.name, e.target.value));
       unsubscribe();
 
       break;

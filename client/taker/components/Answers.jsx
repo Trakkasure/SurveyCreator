@@ -1,5 +1,4 @@
 import React from "react";
-import { Dispatch } from "redux";
 import { actionChannel } from "@redux-saga/core/effects";
 
 let store;
@@ -11,7 +10,6 @@ const keyGen = () => {
 };
 const consoleLog = e => {
   console.log(e.target.name, ": ", e.target.value); //can use name to store question name
-  // this.props.stateChange(e);
 };
 
 const handleData = question => {
@@ -90,7 +88,7 @@ const handleData = question => {
 const Answers = props => {
   store = props.store;
   dispatcher = props.dispatcher;
-  return <div>{handleData(props.data, store)} </div>;
+  return <div>{handleData(props.data)} </div>;
 };
 
 export default Answers;

@@ -4,8 +4,8 @@ export const EDIT_MULTI = "EDIT_MULTI";
 export const ADD_QUESTION = "ADD_QUESTION";
 // export const EDIT_BOOL = "EDIT_BOOL";
 
-export function editRange(question, number) {
-  return { type: EDIT_RANGE, number, question };
+export function editRange(question, answer) {
+  return { type: EDIT_RANGE, answer, question };
 }
 // export function editBool(question, bool) {
 //   return { type: EDIT_BOOL, bool, question };
@@ -17,5 +17,5 @@ export function editOrder(question, array) {
   return { type: EDIT_ORDER, array, question };
 }
 export function addQuestion(question) {
-  return {type: ADD_QUESTION, question}
+  return { type: ADD_QUESTION, question };
 }
