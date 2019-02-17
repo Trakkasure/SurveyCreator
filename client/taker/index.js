@@ -14,6 +14,7 @@ const store = createStore(
 );
 
 const dispatcher = e => {
+  console.log("Event is: ", e);
   const unsubscribe = store.subscribe(() => {
     // console.log("Logging state!: ", store.getState());
   });
@@ -37,7 +38,7 @@ const dispatcher = e => {
 };
 
 const sendData = () => {
-  axios.post("/postSurveyData", {});
+  axios.post("/postSurveyData", store.getState());
 };
 
 const render = () => {
@@ -58,7 +59,6 @@ const render = () => {
     </div>
   );
 };
-
 ReactDOM.render(
   <Provider store={store}>{render()}</Provider>,
   document.getElementById("app")

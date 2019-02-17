@@ -6,6 +6,7 @@ const changeInput = (state = [], action) => {
     for (let i in newState) {
       if (newState[i].question == action.question) {
         questionLocation = i;
+        break;
       }
     }
     console.log("didnt find question in state");
