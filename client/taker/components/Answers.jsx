@@ -1,6 +1,4 @@
 import React from "react";
-import { Dispatch } from "redux";
-import { actionChannel } from "@redux-saga/core/effects";
 
 const keyGen = () => {
   let uuid = Math.random() * 10;

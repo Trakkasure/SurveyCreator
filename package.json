@@ -16,7 +16,7 @@
     "babel-loader": "^8.0.4",
     "body-parser": "1.18.3",
     "express": "^4.16.4",
-    "materialize-css": "^1.0.0-rc.2",
+    "@material-ui/core": "^3.9.2",
     "react": "^16.6.0",
     "react-dnd": "^7.0.2",
     "react-dnd-html5-backend": "^7.0.2",
