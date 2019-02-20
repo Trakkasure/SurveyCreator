@@ -7,7 +7,7 @@ import { createStore } from "redux";
 import Reducer from "./store/reducers/changeInput";
 import { Provider } from "react-redux";
 import * as actions from "./store/actions";
-
+import { Typography, Button } from "@material-ui/core";
 const store = createStore(
   Reducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
