@@ -6,6 +6,8 @@ import { createStore } from "redux";
 import RootReducer from "./store/rootReducer.js";
 import { Provider } from "react-redux";
 
+import { Button, Typography } from "@material-ui/core";
+
 const store = createStore(RootReducer);
 
 const sendData = () => {
@@ -15,10 +17,12 @@ const sendData = () => {
 const render = () => {
   return (
     <div>
-      <h2>Take your Survey!</h2>
+      <Typography variant="h2" gutterBottom>
+        Take your Survey!
+      </Typography>
       <QuestionHolder />
-      <button
-        className="btn waves-effect waves-light"
+      <Button
+        variant="contained"
         id="submitButton"
         type="submit"
         name="action"
@@ -26,7 +30,7 @@ const render = () => {
       >
         Submit
         {/* <i className="material-icons right">send</i> */}
-      </button>
+      </Button>
     </div>
   );
 };
