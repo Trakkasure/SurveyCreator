@@ -17,7 +17,6 @@ const dispatcher = (e, value, question) => {
   const unsubscribe = store.subscribe(() => {
     // console.log("Logging state!: ", store.getState());
   });
-  console.log("question: ", question, "\n value: ", value);
   switch (e.target.type) {
     case "button":
       store.dispatch(actions.editRange(question, value));
@@ -33,11 +32,10 @@ const dispatcher = (e, value, question) => {
       unsubscribe();
       break;
   }
-  console.log("Dispatcher Called");
 };
 
 const sendData = () => {
-  axios.post("/postSurveyData", {});
+  axios.post("/postSurveyData", store.getState());
 };
 
 const render = () => {
