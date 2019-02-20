@@ -13,19 +13,19 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-const dispatcher = e => {
+const dispatcher = (e, value, question) => {
   const unsubscribe = store.subscribe(() => {
     // console.log("Logging state!: ", store.getState());
   });
-
+  console.log("question: ", question, "\n value: ", value);
   switch (e.target.type) {
-    case "range":
-      store.dispatch(actions.editRange(e.target.name, e.target.value));
+    case "button":
+      store.dispatch(actions.editRange(question, value));
       unsubscribe();
 
       break;
     case "radio":
-      store.dispatch(actions.editMulti(e.target.name, e.target.value));
+      store.dispatch(actions.editMulti(question, value));
       unsubscribe();
 
       break;
@@ -46,7 +46,7 @@ const render = () => {
       <Typography variant="h2" gutterBottom>
         Take your Survey!
       </Typography>
-      <QuestionHolder />
+      <QuestionHolder store={store} dispatcher={dispatcher} />
       <Button
         variant="contained"
         id="submitButton"
@@ -55,13 +55,14 @@ const render = () => {
         onClick={sendData}
       >
         Submit
-        {/* <i className="material-icons right">send</i> */}
       </Button>
     </div>
   );
 };
 
 ReactDOM.render(
-  <Provider store={store}>{render()}</Provider>,
+  <Provider store={store} dispatcher={dispatcher}>
+    {render()}
+  </Provider>,
   document.getElementById("app")
 );
