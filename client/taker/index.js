@@ -43,10 +43,12 @@ const sendData = () => {
 const render = () => {
   return (
     <div>
-      <h2>Take your Survey!</h2>
-      <QuestionHolder store={store} dispatcher={dispatcher} />
-      <button
-        className="btn waves-effect waves-light"
+      <Typography variant="h2" gutterBottom>
+        Take your Survey!
+      </Typography>
+      <QuestionHolder />
+      <Button
+        variant="contained"
         id="submitButton"
         type="submit"
         name="action"
@@ -54,7 +56,7 @@ const render = () => {
       >
         Submit
         {/* <i className="material-icons right">send</i> */}
-      </button>
+      </Button>
     </div>
   );
 };
