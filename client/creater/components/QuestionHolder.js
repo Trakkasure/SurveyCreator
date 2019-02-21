@@ -1,44 +1,35 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import Button from "@material-ui/core/Button";
 import Question from "./Question.js";
 
-class QuestionHolder extends React.Component {
-  constructor() {
-    super();
+const addQuestion = () => {
+  // this.state.questions.push({ key: Math.random() * 10, isShown: true });
+  // this.setState({ questions: this.state.questions });
+};
 
-    this.state = {
-      questions: []
-    };
-    this.removeQuestion.bind(this);
-  }
-  addQuestion = () => {
-    this.state.questions.push({ key: Math.random() * 10, isShown: true });
-    this.setState({ questions: this.state.questions });
-  };
+const removeQuestion = key => {
+  // this.setState({ key, isShown: false });
+};
 
-  removeQuestion = key => {
-    this.setState({ key, isShown: false });
-  };
-
-  render() {
-    return (
-      <div>
-        QuestionHolder
-        <Button variant="outlined" onClick={this.addQuestion}>
-          Add Question
-        </Button>
-        <div id="questionHolder">
-          {this.state.questions.map(a => {
-            if (a.isShown) {
-              return (
-                <Question key={a.key} removeQuestion={this.removeQuestion} />
-              );
-            }
-          })}
-        </div>
+const QuestionHolder = () => {
+  const [questions, addQuestion] = useState([]);
+  const onAddQuestion = useCallback(() => {
+    return <Question />;
+  });
+  return (
+    <div>
+      <Button variant="outlined" onClick={addQuestion}>
+        Add Question
+      </Button>
+      <div id="questionHolder">
+        {questions.map(a => {
+          if (a.isShown) {
+            return <Question key={a.key} removeQuestion={removeQuestion} />;
+          }
+        })}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default QuestionHolder;
