@@ -2,29 +2,36 @@ import React, { useCallback, useState } from "react";
 import Button from "@material-ui/core/Button";
 import Question from "./Question.js";
 
-const addQuestion = () => {
-  // this.state.questions.push({ key: Math.random() * 10, isShown: true });
-  // this.setState({ questions: this.state.questions });
-};
-
-const removeQuestion = key => {
-  // this.setState({ key, isShown: false });
-};
-
 const QuestionHolder = () => {
-  const [questions, addQuestion] = useState([]);
+  const [questions, addQuestion] = useState([
+    { id: 0, isShown: true },
+    { id: 1, isShown: true }
+  ]);
   const onAddQuestion = useCallback(() => {
-    return <Question />;
+    questions.push({
+      id: questions[questions.length - 1].id + 1,
+      isShown: true,
+      question: ""
+    });
+    addQuestion([...questions]);
+    console.log(questions);
   });
+
+  const removeQuestion = id => {
+    console.log(id);
+    questions[id].isShown = false;
+    addQuestion([...questions]);
+  };
+
   return (
     <div>
-      <Button variant="outlined" onClick={addQuestion}>
+      <Button variant="outlined" onClick={onAddQuestion}>
         Add Question
       </Button>
       <div id="questionHolder">
         {questions.map(a => {
           if (a.isShown) {
-            return <Question key={a.key} removeQuestion={removeQuestion} />;
+            return <Question id={a.id} removeQuestion={removeQuestion} />;
           }
         })}
       </div>

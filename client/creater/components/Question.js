@@ -34,7 +34,13 @@ const Question = props => {
         </form>
       </div>
       <div>
-        <Button>Remove</Button>
+        <Button
+          onClick={() => {
+            props.removeQuestion(props.id);
+          }}
+        >
+          Remove
+        </Button>
       </div>
     </div>
   );
