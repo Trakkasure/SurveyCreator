@@ -14,13 +14,15 @@ const QuestionHolder = () => {
       question: ""
     });
     addQuestion([...questions]);
-    console.log(questions);
   });
 
   const removeQuestion = id => {
-    console.log(id);
     questions[id].isShown = false;
     addQuestion([...questions]);
+  };
+
+  const editQuestion = (content, id) => {
+    questions[id].question = content;
   };
 
   return (
