@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from "react";
-import Button from "@material-ui/core/Button";
+import { Button, Divider } from "@material-ui/core/";
 import Question from "./Question.js";
 
 const QuestionHolder = () => {
   const [questions, addQuestion] = useState([
-    { id: 0, isShown: true },
-    { id: 1, isShown: true }
+    { id: 0, isShown: true, question: "" },
+    { id: 1, isShown: true, question: "" }
   ]);
   const onAddQuestion = useCallback(() => {
     questions.push({
@@ -33,7 +33,12 @@ const QuestionHolder = () => {
       <div id="questionHolder">
         {questions.map(a => {
           if (a.isShown) {
-            return <Question id={a.id} removeQuestion={removeQuestion} />;
+            return (
+              <div>
+                <Question id={a.id} removeQuestion={removeQuestion} />
+                <Divider />
+              </div>
+            );
           }
         })}
       </div>

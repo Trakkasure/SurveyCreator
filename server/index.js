@@ -16,6 +16,11 @@ app.post("/postSurveyData", (req, res) => {
   res.end();
 });
 
+app.post("/newSurvey", (req, res) => {
+  console.log(req.body);
+  res.end();
+});
+
 app.listen(1128, () => {
   console.log("listening on port 1128!");
 });
