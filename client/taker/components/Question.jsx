@@ -1,8 +1,11 @@
 import React from "react";
 // import Answers from "./Answers.jsx";
-import Boolean from "./questionTypes/Boolean.js";
-import FiniteValue from "./questionTypes/FiniteValue.js";
-import MultipleChoice from "./questionTypes/MultipleChoice.js";
+import {
+  Boolean,
+  FiniteValue,
+  MultipleChoice,
+  OrderOfPrecidence
+} from "./questionTypes";
 import { Typography } from "@material-ui/core";
 
 const Question = props => {
@@ -31,9 +34,7 @@ const Question = props => {
           <Typography component="h5" variant="h4" gutterBottom>
             {props.data.question}
           </Typography>
-          {props.data.answers.map(data => {
-            return data;
-          })}
+          <OrderOfPrecidence items={props.data.answers} />
         </div>
       );
     case "mc":
