@@ -13,8 +13,8 @@ export function editRange(question, answer) {
 export function editMulti(question, answer) {
   return { type: EDIT_MULTI, answer, question };
 }
-export function editOrder(question, array) {
-  return { type: EDIT_ORDER, array, question };
+export function editOrder(question, answer, answerName) {
+  return { type: EDIT_ORDER, answer, question, answerName };
 }
 export function addQuestion(question) {
   return { type: ADD_QUESTION, question };

@@ -7,7 +7,7 @@ const FiniteValue = props => {
   const [slide, setSlide] = useState(props.data.min);
   const onChange = useCallback((e, value) => {
     setSlide(value);
-    props.dispatcher(e, value, question);
+    props.dispatcher("range", value, question);
   });
   return (
     <div

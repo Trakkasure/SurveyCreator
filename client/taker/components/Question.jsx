@@ -34,7 +34,11 @@ const Question = props => {
           <Typography component="h5" variant="h4" gutterBottom>
             {props.data.question}
           </Typography>
-          <OrderOfPrecidence items={props.data.answers} />
+          <OrderOfPrecidence
+            items={props.data.answers}
+            dispatcher={props.dispatcher}
+            question={props.data.question}
+          />
         </div>
       );
     case "mc":

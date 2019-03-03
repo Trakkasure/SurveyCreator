@@ -8,7 +8,7 @@ const Boolean = props => {
       <RadioGroup
         key={props.data.key}
         onChange={(e, value) => {
-          props.dispatcher(e, value, question);
+          props.dispatcher("multichoice", value, question);
         }}
       >
         <FormControlLabel

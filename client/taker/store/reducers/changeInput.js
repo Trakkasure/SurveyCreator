@@ -34,13 +34,29 @@ const changeInput = (state = [], action) => {
         });
       }
       return newState;
-    // case "EDIT_ORDER":
-    //   console.log("editing Order Question!");
-    //   return Object.assign(
-    //     {},
-    //     state,
-    //     (initState[action.question] = action.array)
-    //   );
+    case "EDIT_ORDER":
+      console.log("editing Order Question!");
+      if (questionLocation) {
+        let index = newState[questionLocation].answer.findIndex(i => {
+          console.log(i.name, action.answerName);
+          return i.name == action.answerName;
+        });
+        console.log(index);
+        if (index !== -1) {
+          newState[questionLocation].answer[index].answer = action.answer;
+        } else {
+          newState[questionLocation].answer.push({
+            name: action.answerName,
+            answer: action.answer
+          });
+        }
+      } else {
+        newState.push({
+          question: action.question,
+          answer: [{ name: action.answerName, answer: action.answer }]
+        });
+      }
+      return newState;
     default:
       return newState;
   }

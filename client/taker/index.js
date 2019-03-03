@@ -13,18 +13,23 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-const dispatcher = (e, value, question) => {
+const dispatcher = (questionType, value, question, answerName) => {
   const unsubscribe = store.subscribe(() => {
     // console.log("Logging state!: ", store.getState());
   });
-  switch (e.target.type) {
-    case "button":
+  switch (questionType) {
+    case "range":
       store.dispatch(actions.editRange(question, value));
       unsubscribe();
 
       break;
-    case "radio":
+    case "multichoice":
       store.dispatch(actions.editMulti(question, value));
+      unsubscribe();
+
+      break;
+    case "oop":
+      store.dispatch(actions.editOrder(question, value, answerName));
       unsubscribe();
 
       break;
