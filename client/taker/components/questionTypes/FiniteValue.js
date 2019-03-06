@@ -3,9 +3,11 @@ import Slider from "@material-ui/lab/Slider";
 import { Typography } from "@material-ui/core";
 
 const FiniteValue = props => {
+  const question = props.data.question;
   const [slide, setSlide] = useState(props.data.min);
   const onChange = useCallback((e, value) => {
     setSlide(value);
+    props.dispatcher("range", value, question);
   });
   return (
     <div

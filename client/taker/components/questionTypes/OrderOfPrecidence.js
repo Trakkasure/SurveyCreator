@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Select, MenuItem } from "@material-ui/core";
+import React from "react";
 import { OoPComponent } from "./";
 
 const OrderOfPrecidence = props => {
@@ -8,7 +7,12 @@ const OrderOfPrecidence = props => {
       {props.items.map(data => {
         return (
           <div>
-            <OoPComponent name={data} items={props.items} />
+            <OoPComponent
+              name={data}
+              items={props.items}
+              dispatcher={props.dispatcher}
+              question={props.question}
+            />
             <li>{data}</li>
           </div>
         );

@@ -9,9 +9,8 @@ const Component = props => {
       <Select
         value={state}
         onChange={(e, value) => {
-          console.log("Value Changed!: ", value);
-          console.log(state);
           changeState(value.props.value);
+          props.dispatcher("oop", value.props.value, props.question, data);
         }}
       >
         <MenuItem value="">

@@ -16,7 +16,7 @@ const Question = props => {
           <Typography component="h5" variant="h4" gutterBottom>
             {props.data.question}
           </Typography>
-          <FiniteValue data={props.data} />
+          <FiniteValue data={props.data} dispatcher={props.dispatcher} />
         </div>
       );
     case "boolean":
@@ -25,7 +25,7 @@ const Question = props => {
           <Typography component="h5" variant="h4" gutterBottom>
             {props.data.question}
           </Typography>
-          <Boolean data={props.data} />
+          <Boolean data={props.data} dispatcher={props.dispatcher} />
         </div>
       );
     case "op": // TO DO: Need to figure out what and how to do this.
@@ -34,7 +34,11 @@ const Question = props => {
           <Typography component="h5" variant="h4" gutterBottom>
             {props.data.question}
           </Typography>
-          <OrderOfPrecidence items={props.data.answers} />
+          <OrderOfPrecidence
+            items={props.data.answers}
+            dispatcher={props.dispatcher}
+            question={props.data.question}
+          />
         </div>
       );
     case "mc":
@@ -43,7 +47,7 @@ const Question = props => {
           <Typography component="h5" variant="h4" gutterBottom>
             {props.data.question}
           </Typography>
-          <MultipleChoice data={props.data} />
+          <MultipleChoice data={props.data} dispatcher={props.dispatcher} />
         </div>
       );
   }

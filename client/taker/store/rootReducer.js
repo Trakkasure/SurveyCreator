@@ -1,6 +1,6 @@
-import Reducer from "./reducers/reducers.js";
+import Reducer from "./reducers/changeInput.js";
 import { combineReducers } from "redux";
 
-const rootReducer = combineReducers({ reduce: Reducer });
+const rootReducer = combineReducers({ Reducer });
 
 export default rootReducer;

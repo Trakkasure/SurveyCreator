@@ -13,6 +13,7 @@ app.use(express.static(path.resolve(__dirname, "../client/dist")));
 
 app.post("/postSurveyData", (req, res) => {
   console.log(req.body);
+  res.end();
 });
 
 app.listen(1128, () => {
